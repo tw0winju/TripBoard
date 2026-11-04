@@ -1,0 +1,4 @@
+<resources>
+    <!-- 실제 테마는 Compose(TripBoardTheme)에서. 여기는 스플래시/윈도우 배경용 -->
+    <style name="Theme.TripBoard" parent="android:Theme.Material.Light.NoActionBar" />
+</resources>

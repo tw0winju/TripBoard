@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: tripboard-server
+  datasource:
+    url: jdbc:postgresql://localhost:5432/tripboard
+    username: tripboard
+    password: tripboard
+  docker:
+    compose:
+      file: ../docker-compose.yml
+      lifecycle-management: start-only
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
