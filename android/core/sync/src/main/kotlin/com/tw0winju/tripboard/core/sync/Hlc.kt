@@ -17,10 +17,18 @@ data class Hlc(
     override fun compareTo(other: Hlc): Int =
         compareValuesBy(this, other, { it.wallTime }, { it.counter }, { it.nodeId })
 
-    fun encode(): String = TODO("직접 구현")
+    // format : 123451234512345:12345:A
+    fun encode(): String {
+        val w = wallTime.toString().padStart(15, '0')
+        val c = counter.toString().padStart(5, '0')
+        return "$w:$c:$nodeId"
+    }
 
     companion object {
-        fun decode(value: String): Hlc = TODO("직접 구현")
+        fun decode(value: String): Hlc {
+            val (w, c, n) = value.split(":", limit = 3)
+            return Hlc(w.toLong(), c.toInt(), n)
+        }
     }
 }
 

@@ -28,6 +28,22 @@ class HybridLogicalClockTest {
     }
 
     @Test
+    fun `encode 후 decode하면 원래 값으로 돌아온다`() {
+        val original = Hlc(1730779200000L, 42, "node:1")   // nodeId에 일부러 ':' 넣기
+
+        val restored = Hlc.decode(original.encode())
+
+        assertEquals(original, restored)
+    }
+
+    @Test
     fun `encode한 문자열의 정렬 순서는 Hlc 비교 순서와 같다`() {
+        val a = Hlc(1000L, 9, "A")
+        val b = Hlc(1000L, 10, "A")   // counter 9 vs 10 함정
+        val c = Hlc(2000L, 0, "A")
+
+        assertTrue(a < b && b < c)
+        assertTrue(a.encode() < b.encode())
+        assertTrue(b.encode() < c.encode())
     }
 }
