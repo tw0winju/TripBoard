@@ -9,5 +9,6 @@ data class LwwRegister<T>(
     val value: T,
     val timestamp: Hlc,
 ) {
-    fun merge(other: LwwRegister<T>): LwwRegister<T> = TODO("직접 구현")
+    fun merge(other: LwwRegister<T>): LwwRegister<T> =
+        if (other.timestamp > timestamp) other else this
 }
