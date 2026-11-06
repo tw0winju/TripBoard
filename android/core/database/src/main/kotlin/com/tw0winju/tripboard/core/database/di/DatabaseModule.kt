@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.Room
 import com.tw0winju.tripboard.core.database.TripBoardDatabase
 import com.tw0winju.tripboard.core.database.dao.TripDao
+import com.tw0winju.tripboard.core.database.dao.TripItemsDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -22,4 +23,7 @@ object DatabaseModule {
 
     @Provides
     fun provideTripDao(database: TripBoardDatabase): TripDao = database.tripDao()
+
+    @Provides
+    fun provideTripItemDao(database: TripBoardDatabase): TripItemsDao = database.tripItemsDao()
 }

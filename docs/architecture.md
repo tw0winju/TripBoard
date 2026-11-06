@@ -60,3 +60,18 @@ app
 `android/gradle/libs.versions.toml`, `server/build.gradle.kts`에서 관리.
 Gradle 8.14.3 / AGP 8.10.1 / Kotlin 2.1.21 / Compose BOM 2025.05.01 / Hilt 2.56.2 / Room 2.7.1 / Spring Boot 3.5.0.
 안정적으로 호환이 확인된 조합으로 시작했으니, 첫 빌드가 된 뒤 Android Studio의 업데이트 제안에 따라 올리면 된다.
+
+## 6. 결정 기록
+
+| 날짜 | 결정 | 고려한 대안 | 이유 |
+|---|---|---|---|
+| 2026-11-06 | **KMP는 우선순위에서 제외** | KMP 확장을 전제로 설계 | Android 이직 준비가 목표. Android 전용 API를 자유롭게 쓴다 |
+| 2026-11-06 | 로컬 DB: **Room** 유지 | SQLDelight | 한국 안드로이드 공고에서 요구 빈도가 높음. 동기화용 SQL은 `@Query`로 충분 |
+| 2026-11-06 | 네트워크: **OkHttp** 유지 | Ktor Client | 채용 시장 표준. WebSocket 콜백을 `callbackFlow`로 감싸는 경험 자체가 학습 목표 |
+
+`core:sync`는 KMP와 무관하게 순수 Kotlin으로 유지한다. 에뮬레이터 없이 JVM 단위 테스트로 빠르게 검증할 수 있기 때문.
+
+### 아직 열려 있는 결정
+- 화면 구조: 지금의 UDF(MVVM) vs MVI
+- 로컬 변경 추적: 필드별 HLC 컬럼 vs outbox(op log) 테이블 vs 둘 다
+- 4절의 서버 영속성 계층, WebSocket 프로토콜
