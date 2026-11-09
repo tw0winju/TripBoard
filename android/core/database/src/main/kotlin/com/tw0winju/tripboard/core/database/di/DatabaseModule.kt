@@ -3,6 +3,7 @@ package com.tw0winju.tripboard.core.database.di
 import android.content.Context
 import androidx.room.Room
 import com.tw0winju.tripboard.core.database.TripBoardDatabase
+import com.tw0winju.tripboard.core.database.dao.PendingChangeDao
 import com.tw0winju.tripboard.core.database.dao.TripDao
 import com.tw0winju.tripboard.core.database.dao.TripItemsDao
 import dagger.Module
@@ -26,4 +27,7 @@ object DatabaseModule {
 
     @Provides
     fun provideTripItemDao(database: TripBoardDatabase): TripItemsDao = database.tripItemsDao()
+
+    @Provides
+    fun providePendingChangeDao(database: TripBoardDatabase): PendingChangeDao = database.pendingChangeDao()
 }

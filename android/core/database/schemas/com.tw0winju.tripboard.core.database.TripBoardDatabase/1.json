@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "f2b1d747cda9b106fbc10d5d2be10cb8",
+    "identityHash": "de0a4205818d9e3d67619b8393d1b4d9",
     "entities": [
       {
         "tableName": "trips",
@@ -87,11 +87,55 @@
             "id"
           ]
         }
+      },
+      {
+        "tableName": "pending_changes",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`entityId` TEXT NOT NULL, `entityType` TEXT NOT NULL, `field` TEXT NOT NULL, `value` TEXT NOT NULL, `hlc` TEXT NOT NULL, PRIMARY KEY(`entityId`, `entityType`, `field`))",
+        "fields": [
+          {
+            "fieldPath": "entityId",
+            "columnName": "entityId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "entityType",
+            "columnName": "entityType",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "field",
+            "columnName": "field",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "value",
+            "columnName": "value",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "hlc",
+            "columnName": "hlc",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "entityId",
+            "entityType",
+            "field"
+          ]
+        }
       }
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'f2b1d747cda9b106fbc10d5d2be10cb8')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'de0a4205818d9e3d67619b8393d1b4d9')"
     ]
   }
 }
