@@ -13,4 +13,7 @@ interface TripItemsDao {
 
     @Upsert
     suspend fun upsert(tripItems: TripItemEntity)
+
+    @Query("UPDATE trips_item SET memo = :memo, memoHlc = :memoHlc WHERE id = :id")
+    suspend fun updateMemo(id: String, memo: String, memoHlc: String)
 }
