@@ -1,6 +1,8 @@
 package com.tw0winju.tripboard.core.data.di
 
+import com.tw0winju.tripboard.core.data.repository.OfflineFirstTripItemRepository
 import com.tw0winju.tripboard.core.data.repository.OfflineFirstTripRepository
+import com.tw0winju.tripboard.core.data.repository.TripItemRepository
 import com.tw0winju.tripboard.core.data.repository.TripRepository
 import com.tw0winju.tripboard.core.sync.HybridLogicalClock
 import dagger.Binds
@@ -17,6 +19,9 @@ internal abstract class DataModule {
 
     @Binds
     abstract fun bindTripRepository(impl: OfflineFirstTripRepository): TripRepository
+
+    @Binds
+    abstract fun bindTripItemRepository(impl: OfflineFirstTripItemRepository): TripItemRepository
 
     companion object {
         @Provides
