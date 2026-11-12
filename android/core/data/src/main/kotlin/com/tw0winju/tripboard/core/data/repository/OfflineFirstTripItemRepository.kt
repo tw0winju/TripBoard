@@ -47,8 +47,8 @@ internal class OfflineFirstTripItemRepository @Inject constructor(
 
 
     private fun TripItemEntity.toModel(): TripItem {
-        val titleHlc = Hlc.decode(titleHlc)
-        val memoHlc = Hlc.decode(memoHlc)
+        val decodedTitleHlc = Hlc.decode(titleHlc)
+        val decodedMemoHlc = Hlc.decode(memoHlc)
         return TripItem(
             id = id,
             title = title,
@@ -56,13 +56,13 @@ internal class OfflineFirstTripItemRepository @Inject constructor(
             tripId = tripId,
             memo = memo,
             titleMeta = FieldMeta(
-                editedAt = titleHlc.wallTime,
-                editedBy = titleHlc.nodeId,
+                editedAt = decodedTitleHlc.wallTime,
+                editedBy = decodedTitleHlc.nodeId,
                 isPending = false   // TODO: outbox와 combine해서 채우기
             ),
             memoMeta = FieldMeta(
-                editedAt = memoHlc.wallTime,
-                editedBy = memoHlc.nodeId,
+                editedAt = decodedMemoHlc.wallTime,
+                editedBy = decodedMemoHlc.nodeId,
                 isPending = false   // TODO: outbox와 combine해서 채우기
             ),
         )

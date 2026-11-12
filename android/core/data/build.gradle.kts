@@ -19,4 +19,10 @@ dependencies {
     ksp(libs.androidx.hilt.compiler)
 
     testImplementation(libs.kotlinx.coroutines.test)
+
+    // 계측 테스트 (에뮬레이터에서 실행)
+    androidTestImplementation(libs.androidx.test.ext.junit)
+    androidTestImplementation(libs.androidx.test.runner)
+    androidTestImplementation(libs.kotlinx.coroutines.test)
+    androidTestImplementation(libs.kotlin.test)
 }

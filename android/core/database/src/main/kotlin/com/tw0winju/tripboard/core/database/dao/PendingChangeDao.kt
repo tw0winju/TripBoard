@@ -13,4 +13,7 @@ interface PendingChangeDao {
 
     @Query("SELECT COUNT(*) FROM pending_changes")
     fun observeCount(): Flow<Int>
+
+    @Query("SELECT * FROM pending_changes ORDER BY hlc")
+    suspend fun getAll(): List<PendingChangeEntity>
 }
