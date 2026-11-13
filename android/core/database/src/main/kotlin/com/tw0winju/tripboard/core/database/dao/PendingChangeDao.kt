@@ -16,4 +16,7 @@ interface PendingChangeDao {
 
     @Query("SELECT * FROM pending_changes ORDER BY hlc")
     suspend fun getAll(): List<PendingChangeEntity>
+
+    @Query("DELETE FROM pending_changes WHERE entityType = :entityType AND entityId = :entityId AND field = :field")
+    suspend fun delete(entityType: String, entityId: String, field: String): Int
 }

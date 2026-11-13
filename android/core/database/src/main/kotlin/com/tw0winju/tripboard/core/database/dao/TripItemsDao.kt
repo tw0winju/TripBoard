@@ -16,4 +16,10 @@ interface TripItemsDao {
 
     @Query("UPDATE trips_item SET memo = :memo, memoHlc = :memoHlc WHERE id = :id")
     suspend fun updateMemo(id: String, memo: String, memoHlc: String)
+
+    @Query("SELECT * FROM trips_item WHERE id = :id")
+    suspend fun getById(id: String): TripItemEntity?
+
+    @Query("UPDATE trips_item SET title = :title, titleHlc = :titleHlc WHERE id = :id")
+    suspend fun updateTitle(id: String, title: String, titleHlc: String)
 }
